@@ -20,8 +20,8 @@
                 }
 
                 switch($source) {
-                    case "400":
-                        echo '400';
+                    case "add_post":
+                        include "includes/add_posts.php";
                     break;
                     default:
                         include "includes/view_all_posts.php";
