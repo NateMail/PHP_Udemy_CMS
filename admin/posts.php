@@ -1,0 +1,48 @@
+<?php include 'includes/admin_header.php' ?>
+    <div id="wrapper">
+        <!-- Navigation -->
+       <?php include 'includes/admin_navigation.php' ?>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                <h1 class="page-header">
+                           Welcome to Admin
+                            <small>Author</small>
+                </h1>
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th>Id</th>
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Image</th>
+                        <th>Tags</th>
+                        <th>Comments</th>
+                        <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>Auth</td>
+                            <td>Title</td>
+                            <td>Cat</td>
+                            <td>Status</td>
+                            <td>Img</td>
+                            <td>Tag</td>
+                            <td>Comments</td>
+                            <td>Date</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+   <?php include 'includes/admin_footer.php' ?>
