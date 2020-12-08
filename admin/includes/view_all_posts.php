@@ -40,7 +40,7 @@
                                 echo "<td>{$post_tag}</td>";
                                 echo "<td>{$post_comment_count}</td>";
                                 echo "<td>{$post_date}</td>";
-                                echo "<td><a href=''>Update</a></td>";
+                                echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Update</a></td>";
                                 echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
                                 echo "</tr>";
                             }
