@@ -9,6 +9,7 @@
                         <th>Role</th>
                         <th>Change to Admin</th>
                         <th>Change to Subscriber</th>
+                        <th>Update</th>
                         <th>Delete</th>
                         </tr>
                     </thead>
@@ -39,6 +40,7 @@
 
                                 echo "<td><a href='users.php?change_to_subscriber={$user_id}'>Subscriber</a></td>";
 
+                                echo "<td><a href='users.php?source=edit_user&edit_user={$user_id}'>Update</a></td>";
 
                                 echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
                                 echo "</tr>";
