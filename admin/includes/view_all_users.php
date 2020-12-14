@@ -44,7 +44,7 @@
                                 echo "<td><a href='comments.php?approved='>Update</a></td>";
 
 
-                                echo "<td><a href='comments.php?delete='>Delete</a></td>";
+                                echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
                                 echo "</tr>";
                             }
                         ?>
@@ -61,21 +61,13 @@
                         header("Location: comments.php");
                    }
 
-                if(isset($_GET['unapproved'])) {
-                $comment_id = $_GET['unapproved'];
-
-                $query = "UPDATE comments SET comment_status  = 'unapproved' WHERE comment_id = $comment_id ";
-                $unapproved_query = mysqli_query($connection, $query);
-                header("Location: comments.php");
-                }
-
                 if(isset($_GET['delete'])) {
-                    $comment_id = $_GET['delete'];
+                    $user_id = $_GET['delete'];
 
-                $query = "DELETE FROM comments WHERE comment_id = {$comment_id}";
+                $query = "DELETE FROM users WHERE user_id = {$user_id}";
                 $delete_query = mysqli_query($connection, $query);
                 if($delete_query) {
-                    header("Location: comments.php");
+                    header("Location: users.php");
                 }
                 }
                 ?>
