@@ -5,10 +5,8 @@
 
 <?php 
 
-    if(isset($_SESSION['role'])) {
-        if($_SESSION['role'] === 'subscriber') {
-            header("Location: ../index.php");
-        }
+    if(!isset($_SESSION['role'])) {
+        header("Location: ../index.php");
     }
 
 ?>
