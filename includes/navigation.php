@@ -25,9 +25,22 @@
                     <li>
                     <a href="admin">ADMIN</a>
                     </li>
+
+                    <?php 
+                    if (session_status() === PHP_SESSION_NONE) session_start();
+                        if(isset($_SESSION['role'])) {
+                            if(isset($_GET['p_id'])) {
+                                $this_post_id = $_GET['p_id'];
+
+                                echo "<li><a href='admin/posts.php?source=edit_post&p_id={$this_post_id}'>Edit Posts</a></li>";
+                            } 
+                        }
+                    ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
+
+    
