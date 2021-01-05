@@ -135,6 +135,10 @@
                 <div class="row">
                     <?php 
                     
+                    $query = "SELECT * FROM posts WHERE post_status = 'published'";
+                    $select_all_published_posts = mysqli_query($connection, $query);
+                    $post_published_count = mysqli_num_rows($select_all_published_posts);
+
                     $query = "SELECT * FROM posts WHERE post_status = 'draft'";
                     $select_all_draft_posts = mysqli_query($connection, $query);
                     $post_draft_count = mysqli_num_rows($select_all_draft_posts);
@@ -159,9 +163,9 @@
 
                         <?php 
                         
-                        $element_text = ['Active Posts','Draft Posts', 'Comments', 'Unapproved Comments', 'Users', 'Subscribers', 'Categories'];
+                        $element_text = ['All Posts','Published Posts', 'Draft Posts', 'Comments', 'Unapproved Comments', 'Users', 'Subscribers', 'Categories'];
                         
-                        $element_count = [$posts_count, $post_draft_count, $comment_count, $comment_unapproved_count, $user_count, $subscriber_count, $categories_count];
+                        $element_count = [$posts_count, $post_published_count, $post_draft_count, $comment_count, $comment_unapproved_count, $user_count, $subscriber_count, $categories_count];
 
                         for($i = 0; $i < 7; $i++) {
                             echo "['{$element_text[$i]}', {$element_count[$i]}], ";
