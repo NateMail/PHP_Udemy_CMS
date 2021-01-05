@@ -53,6 +53,7 @@
                         <th>Tags</th>
                         <th>Comments</th>
                         <th>Date</th>
+                        <th>View</th>
                         <th>Update</th>
                         <th>Delete</th>
                         </tr>
@@ -100,6 +101,7 @@
                                 echo "<td>{$post_tag}</td>";
                                 echo "<td>{$post_comment_count}</td>";
                                 echo "<td>{$post_date}</td>";
+                                echo "<td><a href='../post.php?p_id={$post_id}'>View</a></td>";
                                 echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Update</a></td>";
                                 echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
                                 echo "</tr>";
