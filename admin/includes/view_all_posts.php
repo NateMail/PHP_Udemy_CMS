@@ -76,6 +76,7 @@
                         <th>Image</th>
                         <th>Tags</th>
                         <th>Comments</th>
+                        <th>Views</th>
                         <th>Date</th>
                         <th>View</th>
                         <th>Update</th>
@@ -97,6 +98,7 @@
                                 $post_tag = $row['post_tag'];
                                 $post_comment_count = $row['post_comment_count'];
                                 $post_status = $row['post_status'];
+                                $post_view_count = $row['post_view_count'];
 
                                 echo "<tr>";
 
@@ -124,6 +126,7 @@
                                 echo "<td><img src='../images/$post_image' width='100' /></td>";
                                 echo "<td>{$post_tag}</td>";
                                 echo "<td>{$post_comment_count}</td>";
+                                echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to reset views to 0?');\" href='posts.php?reset={$post_id}'>{$post_view_count}</a></td>";
                                 echo "<td>{$post_date}</td>";
                                 echo "<td><a href='../post.php?p_id={$post_id}'>View</a></td>";
                                 echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Update</a></td>";
@@ -144,6 +147,16 @@
                     $query = "DELETE FROM posts WHERE id = {$post_id}";
                     $delete_query = mysqli_query($connection, $query);
                     if($delete_query) {
+                        header("Location: posts.php");
+                    }
+                    }
+
+                    if(isset($_GET['reset'])) {
+
+                    $post_id = $_GET['reset'];
+                    $query = "UPDATE posts SET post_view_count = 0 WHERE id=" . mysqli_real_escape_string($connection, $_GET['reset']) . " ";
+                    $reset_query = mysqli_query($connection, $query);
+                    if($reset_query) {
                         header("Location: posts.php");
                     }
                     }
