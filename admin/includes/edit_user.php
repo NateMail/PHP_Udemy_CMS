@@ -39,7 +39,17 @@
             }
         }
 
-        $query = "UPDATE users SET username = '{$username}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}', user_email = '{$user_email}', user_role = '{$user_role}', user_password = '{$user_password}', user_image = '{$user_image}' WHERE user_id = $user_id ";
+        $query = "SELECT randSalt FROM users";
+        $select_randsalt_query = mysqli_query($connection, $query);
+        if(!$select_randsalt_query) {
+            die("Query Failed" . mysqli_error($connection));
+        }
+
+        $row = mysqli_fetch_array($select_randsalt_query);
+        $salt = $row['randSalt'];
+        $hashed_password = crypt($user_password, $salt);
+
+        $query = "UPDATE users SET username = '{$username}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}', user_email = '{$user_email}', user_role = '{$user_role}', user_password = '{$hashed_password}', user_image = '{$user_image}' WHERE user_id = $user_id ";
 
         $update_user = mysqli_query($connection, $query);
 

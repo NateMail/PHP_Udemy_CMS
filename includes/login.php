@@ -27,6 +27,8 @@
             $db_password = $row['user_password'];
         }
 
+        $password = crypt($password, $db_password);
+
         if($username === $db_username && $password === $db_password)  {
             $_SESSION['username'] = $db_username;
             $_SESSION['first_name'] = $db_first_name;
