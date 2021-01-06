@@ -19,6 +19,29 @@
                     $update_to_delete_status = mysqli_query($connection, $query);
                     confirm($update_to_delete_status);
                 break;
+                case 'clone': 
+                    $query = "SELECT * FROM posts WHERE id = '{$postValueId}' ";
+                    $select_post_query = mysqli_query($connection, $query);
+
+                    while($row = mysqli_fetch_array($select_post_query)) {
+                        $post_title = $row['post_title'];
+                        $post_author = $row['post_author'];
+                        $post_category_id = $row['post_category_id'];
+                        $post_content = $row['post_content'];
+                        $post_date = $row['post_date'];
+                        $post_image = $row['post_image'];
+                        $post_tag = $row['post_tag'];
+                        $post_comment_count = $row['post_comment_count'];
+                        $post_status = $row['post_status'];
+                    }
+                    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tag, post_status, post_comment_count) VALUES({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tag}', '{$post_status}', $post_comment_count ) ";
+
+                    $copy_query = mysqli_query($connection, $query);
+
+                    if(!$copy_query) {
+                        die("Query Failed" . mysqli_error($connection));
+                    }
+                break;
             }
         }
     }
@@ -33,6 +56,7 @@
         <option value="published">Publish</option>
         <option value="draft">Draft</option>
         <option value="delete">Delete</option>
+        <option value="clone">Clone</option>
     </select>
 </div>
 
@@ -60,7 +84,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $query = 'SELECT * FROM posts';
+                            $query = "SELECT * FROM posts ORDER BY id DESC";
                             $select_posts = mysqli_query($connection, $query);
 
                             while($row = mysqli_fetch_assoc($select_posts)) {
